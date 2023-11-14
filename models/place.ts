@@ -1,23 +1,25 @@
-interface ILocation {
+import { ILocation } from "../types/common";
+
+interface ILocationSmall {
   lat: number;
   lng: number;
 }
-class Place {
+export class Place {
   title: string;
   imageUri: string;
   address: string;
-  location: ILocation;
+  location: ILocationSmall;
   id: string;
   constructor(
     title: string,
     imageUri: string,
-    address: string,
-    location: ILocation
+    location: ILocation,
+    id: string
   ) {
     this.title = title;
     this.imageUri = imageUri;
-    this.address = address;
-    this.location = location;
-    this.id = new Date().toString() + Math.random().toString();
+    this.address = location.address as string;
+    this.location = { lat: location.lat, lng: location.lng };
+    this.id = id;
   }
 }
